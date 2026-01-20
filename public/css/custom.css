@@ -1,0 +1,153 @@
+/* Font Integration */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #0f172a;
+    --secondary-color: #334155;
+    --accent-color: #0ea5e9;
+    --accent-gradient: linear-gradient(135deg, #0f172a 0%, #0ea5e9 100%);
+    --bg-light: #f8fafc;
+    --text-main: #1e293b;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --card-hover-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+}
+
+/* Navbar Styling */
+.navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    letter-spacing: -0.5px;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #f1f5f9;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
+
+/* Specific Card Headers */
+.card-header.bg-primary {
+    background: var(--accent-gradient) !important;
+    border: none;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--accent-gradient);
+    border: none;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+}
+
+.btn-primary:hover {
+    filter: brightness(110%);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+/* Auth Pages (Login) */
+.auth-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(circle at top right, #e0f2fe, transparent),
+                radial-gradient(circle at bottom left, #f0f9ff, transparent);
+}
+
+.auth-card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.auth-header {
+    background: var(--accent-gradient);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Dashboard Stats */
+.stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card .icon-bg {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    font-size: 5rem;
+    opacity: 0.1;
+    color: white;
+}
+
+/* Timeline for Tracking */
+.tracking-timeline {
+    border-left: 3px solid #e2e8f0;
+    padding-left: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #e2e8f0;
+}
+
+.timeline-item.active::before {
+    background: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3);
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.8em;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
