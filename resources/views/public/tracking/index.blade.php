@@ -27,27 +27,15 @@
                     <form action="{{ route('tracking.search') }}" method="POST">
                         @csrf
                         <div class="mb-4">
-                            <label class="form-label fw-bold text-muted small">NOMOR REGISTRASI</label>
+                            <label class="form-label fw-bold text-muted small">NIK (NOMOR INDUK KEPENDUDUKAN)</label>
                             <div class="input-group input-group-lg">
                                 <span class="input-group-text bg-light border-end-0"><i
-                                        class="bi bi-card-heading text-muted"></i></span>
-                                <input type="text" name="registration_number"
-                                    class="form-control border-start-0 ps-0 text-uppercase fw-bold"
-                                    placeholder="Contoh: REG-2023..." required>
+                                        class="bi bi-person-badge text-muted"></i></span>
+                                <input type="text" name="nik" class="form-control border-start-0 ps-0 fw-bold"
+                                    placeholder="Contoh: 1234567890123456" required maxlength="16" minlength="16">
                             </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="form-label fw-bold text-muted small">TOKEN TRACKING</label>
-                            <div class="input-group input-group-lg">
-                                <span class="input-group-text bg-light border-end-0"><i
-                                        class="bi bi-key text-muted"></i></span>
-                                <input type="text" name="tracking_token"
-                                    class="form-control border-start-0 ps-0 text-uppercase fw-bold text-primary"
-                                    placeholder="6 Digit Token" required maxlength="6" style="letter-spacing: 2px;">
-                            </div>
-                            <div class="form-text mt-2"><i class="bi bi-info-circle me-1"></i> Token tercantum pada bukti
-                                pendaftaran layanan.</div>
+                            <div class="form-text mt-2"><i class="bi bi-info-circle me-1"></i> Masukkan 16 digit NIK yang
+                                tertera di KTP/KK.</div>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 btn-lg shadow-sm py-3 rounded-pill fw-bold">

@@ -33,9 +33,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('services', ServiceRequestController::class);
 
     // Admin Only Routes
+    // Admin Only Routes
     Route::middleware(['can:admin'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('service-types', ServiceTypeController::class);
+
+        // Scan Routes
+        Route::get('/scan', [ServiceRequestController::class, 'scan'])->name('services.scan');
+        Route::post('/scan', [ServiceRequestController::class, 'processScan'])->name('services.process_scan');
     });
 });
 

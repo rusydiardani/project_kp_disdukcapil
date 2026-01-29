@@ -24,6 +24,13 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">NIK (Nomor Induk Kependudukan)</label>
+                            <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" required
+                                maxlength="16">
+                            @error('nik') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Nama Pemohon</label>
                             <input type="text" name="applicant_name"
                                 class="form-control @error('applicant_name') is-invalid @enderror" required>

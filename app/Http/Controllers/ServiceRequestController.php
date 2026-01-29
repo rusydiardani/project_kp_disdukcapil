@@ -48,6 +48,7 @@ class ServiceRequestController extends Controller
     {
         $validated = $request->validate([
             'service_type_id' => 'required|exists:service_types,id',
+            'nik' => 'required|string|size:16',
             'applicant_name' => 'required|string|max:255',
             'submission_date' => 'required|date',
             'notes' => 'nullable|string',
@@ -63,6 +64,7 @@ class ServiceRequestController extends Controller
 
         ServiceRequest::create([
             'registration_number' => $regNumber,
+            'nik' => $validated['nik'],
             'service_type_id' => $validated['service_type_id'],
             'user_id' => Auth::id(),
             'applicant_name' => $validated['applicant_name'],
@@ -124,5 +126,42 @@ class ServiceRequestController extends Controller
         }
         $service->delete();
         return redirect()->route('services.index')->with('success', 'Layanan dihapus.');
+    }
+
+
+    public function scan()
+    {
+        return view('services.scan');
+    }
+
+    public function processScan(Request $request)
+    {
+        $request->validate([
+            'nik' => 'required|string|size:16',
+        ]);
+
+        $service = ServiceRequest::where('nik', $request->nik)
+            ->where('status', '!=', 'completed')
+            ->orderBy('created_at', 'asc')
+            ->first();
+
+        if (!$service) {
+            $completed = ServiceRequest::where('nik', $request->nik)->where('status', 'completed')->exists();
+
+            if ($completed) {
+                return response()->json(['status' => 'error', 'message' => 'Layanan NIK ini sudah SELESAI sebelumnya.'], 400);
+            }
+
+            return response()->json(['status' => 'error', 'message' => 'Data tidak ditemukan atau belum terdaftar.'], 404);
+        }
+
+        $service->update(['status' => 'completed']);
+
+        // Return JSON success
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Status layanan untuk ' . $service->applicant_name . ' berhasil diperbarui.',
+            'data' => $service
+        ]);
     }
 }

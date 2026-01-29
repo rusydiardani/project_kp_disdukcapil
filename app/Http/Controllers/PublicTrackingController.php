@@ -15,13 +15,12 @@ class PublicTrackingController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'registration_number' => 'required|string',
-            'tracking_token' => 'required|string',
+            'nik' => 'required|string|size:16',
         ]);
 
         $service = ServiceRequest::with('serviceType')
-            ->where('registration_number', $request->registration_number)
-            ->where('tracking_token', $request->tracking_token)
+            ->where('nik', $request->nik)
+            ->latest() // Ambil yang paling baru jika ada history
             ->first();
 
         if (!$service) {
